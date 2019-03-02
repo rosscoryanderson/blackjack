@@ -16,9 +16,9 @@ public class Match {
     public Game newGame(int betAmount) {
         playerChipStack = playerChipStack - betAmount;
         Game game = new Game(betAmount, playerChipStack);
-        dealCardToPlayer(game);
+        dealCardToPlayer(game, 0);
         dealCardToDealer(game);
-        dealCardToPlayer(game);
+        dealCardToPlayer(game, 0);
 
         return game;
     }
@@ -31,12 +31,8 @@ public class Match {
         this.playerChipStack = playerChipStack;
     }
 
-    public void dealCardToPlayer(Game game) {
-        game.dealCardToPlayer(shoe.drawCard());
-    }
-
-    public void dealCardToPlayerSplit(Game game) {
-        game.dealCardToPlayerSplit(shoe.drawCard());
+    public void dealCardToPlayer(Game game, int index) {
+        game.dealCardToPlayer(shoe.drawCard(), index);
     }
 
     public void dealCardToDealer(Game game) {

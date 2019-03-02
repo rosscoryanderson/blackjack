@@ -7,11 +7,14 @@ public class Hand {
     private List<Card> hand;
     private int handValue;
     private boolean aceInHand;
+    private boolean doubleDown;
+    private HandStatus handStatus;
 
     public Hand() {
         hand = new ArrayList<Card>();
         handValue = 0;
         aceInHand = false;
+        doubleDown = false;
     }
 
     public void addCardToHand(Card card) {
@@ -34,12 +37,36 @@ public class Hand {
         return handValue;
     }
 
+    public boolean isDoubleDown() {
+        return doubleDown;
+    }
+
+    public HandStatus getHandStatus() {
+        return handStatus;
+    }
+
+    public void setHandStatus(HandStatus handStatus) {
+        this.handStatus = handStatus;
+    }
+
+    public void setDoubleDown(boolean doubleDown) {
+        this.doubleDown = doubleDown;
+    }
+
     public boolean isAceInHand() {
         return aceInHand;
     }
 
     public Card getCardByPosition(int position) {
         return hand.get(position);
+    }
+
+    public int getLargestHandValue() {
+        if(aceInHand == true && (getHandValue() + 10) <= 21) {
+            return getHandValue() + 10;
+        } else {
+            return getHandValue();
+        }
     }
 
 

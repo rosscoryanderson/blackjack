@@ -45,40 +45,28 @@ public class BlackJackController {
         return new ResponseEntity<Game>(game, HttpStatus.OK);
     }
 
-    @PostMapping("/hit")
-    public ResponseEntity<Game> hitAction() {
-
-        return null;
-    }
-
-    @PostMapping("/stand")
-    public ResponseEntity<Game> standAction() {
-        return null;
-    }
-
-    @PostMapping("/doubleDown")
-    public ResponseEntity<?> doubleDownAction() {
-        return null;
-    }
-
-    @PostMapping("/split")
-    public ResponseEntity<?> splitAction() {
-        game = blackJackService.splitAction(game);
+    @PostMapping("/hit/{index}")
+    public ResponseEntity<Game> hitAction(@PathVariable int index) {
+        game = blackJackService.hitAction(match, game, index);
         return new ResponseEntity<Game>(game, HttpStatus.OK);
     }
 
-    @PostMapping("/hit/split")
-    public ResponseEntity<Game> hitOnSplitAction() {
-        return null;
+    @PostMapping("/stand/{index}")
+    public ResponseEntity<Game> standAction(@PathVariable int index) {
+        game = blackJackService.standAction(match, game, index);
+        return new ResponseEntity<Game>(game, HttpStatus.OK);
     }
 
-    @PostMapping("/stand/split")
-    public ResponseEntity<Game> standOnSplitAction() {
-        return null;
+    @PostMapping("/doubleDown/{index}")
+    public ResponseEntity<?> doubleDownAction(@PathVariable int index) {
+        game = blackJackService.doubleDownAction(match, game, index);
+        return new ResponseEntity<Game>(game, HttpStatus.OK);
     }
 
-    @PostMapping("/doubleDown/split")
-    public ResponseEntity<?> doubleDownOnSplitAction() {
-        return null;
+    @PostMapping("/split/{index}")
+    public ResponseEntity<?> splitAction(@PathVariable int index) {
+        game = blackJackService.splitAction(game, index);
+        return new ResponseEntity<Game>(game, HttpStatus.OK);
     }
+
 }
