@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Card from './components/Card';
+
 
 class App extends Component {
   render() {
@@ -11,6 +13,8 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+          <Card value="two" suit="spades"/>
+          <Card value="ace" suit="SPADES"/>
           <a
             className="App-link"
             href="https://reactjs.org"
