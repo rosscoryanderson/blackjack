@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Stack;
 
 public class Deck {
-    private Stack<Card> deck = new Stack<Card>();
+    private Stack<Card> deck;
 
     public Deck() {
         deck = shuffledDeck();
@@ -29,7 +29,7 @@ public class Deck {
         Stack<Card> shuffledDeck = new Stack<Card>();
         Random random = new Random();
 
-        for (Card c: sortedDeck) {
+        for (int i = 0; i < 52; i++) {
             int size = sortedDeck.size();
             int position = random.nextInt(size);
             Card card = sortedDeck.remove(position);

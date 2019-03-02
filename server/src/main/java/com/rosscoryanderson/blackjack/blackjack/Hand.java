@@ -4,23 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hand {
-    ArrayList<Card> hand;
-    int handValue;
-    boolean handHasAce;
+    private List<Card> hand;
+    private int handValue;
+    private boolean aceInHand;
 
     public Hand() {
         hand = new ArrayList<Card>();
         handValue = 0;
-        handHasAce = false;
+        aceInHand = false;
     }
 
     public void addCardToHand(Card card) {
         hand.add(card);
         handValue += card.getValue();
-        handHasAce = card.isAce();
+        if(card.getName() == "Ace" && !aceInHand) {
+            aceInHand = true;
+        }
     }
 
-    public ArrayList<Card> getHand() {
+    public int getHandSize() {
+        return hand.size();
+    }
+
+    public List<Card> getHand() {
         return hand;
     }
 
@@ -28,7 +34,13 @@ public class Hand {
         return handValue;
     }
 
-    public boolean handHasAce() {
-        return handHasAce;
+    public boolean isAceInHand() {
+        return aceInHand;
     }
+
+    public Card getCardByPosition(int position) {
+        return hand.get(position);
+    }
+
+
 }

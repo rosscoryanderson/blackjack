@@ -9,12 +9,12 @@ public class Shoe {
 
 
     public Shoe() {
-        shoe = new Stack<Card>();
+        shoe = createShoe();
     }
 
     public Shoe(int numberOfDecksInShoe) {
         this.numberOfDecksInShoe = numberOfDecksInShoe;
-        shoe = new Stack<Card>();
+        shoe = createShoe();
     }
 
     private Stack<Card> createShoe() {
@@ -24,7 +24,7 @@ public class Shoe {
             Deck deck = new Deck();
             int size = deck.getDeckSize();
 
-            for(int j = 0; j < 52; j++) {
+            for(int j = 0; j < size; j++) {
                 shoeCreate.push(deck.getCard());
             }
         }
@@ -32,6 +32,9 @@ public class Shoe {
     }
 
     public Card drawCard() {
+        if(shoe.empty()) {
+            shoe = createShoe();
+        }
         return shoe.pop();
     }
 
@@ -39,6 +42,7 @@ public class Shoe {
         return shoe.size();
     }
 
+    // This will need to be edited if we want to include decks with different numbers of cards.
     public int getTotalCardsInShoe() {
         return numberOfDecksInShoe * 52;
     }

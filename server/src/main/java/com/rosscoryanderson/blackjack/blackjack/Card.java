@@ -1,8 +1,8 @@
 package com.rosscoryanderson.blackjack.blackjack;
 
 public class Card {
-    Suit suit;
-    Value value;
+    private Suit suit;
+    private Value value;
 
     public Card(Suit suit, Value value) {
         this.suit = suit;
@@ -13,7 +13,12 @@ public class Card {
         return value.getValue();
     }
 
-    public boolean isAce() {
-        return value.getName() == "Ace";
+    public String getName() {
+        return value.getName();
     }
+
+    public String getSuit() {
+        return suit.toString();
+    }
+
 }
