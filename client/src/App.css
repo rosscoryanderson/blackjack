@@ -31,3 +31,11 @@
     transform: rotate(360deg);
   }
 }
+
+.cardImage {
+  height: 20vh;
+}
+
+.imageContainer {
+  display: inline-flex;
+}
