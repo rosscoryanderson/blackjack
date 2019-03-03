@@ -53,8 +53,19 @@ public class Hand {
         this.doubleDown = doubleDown;
     }
 
-    public boolean isAceInHand() {
-        return aceInHand;
+    public boolean getCanDoubleDown() {
+        return getHandSize() == 2;
+    }
+
+    public boolean getCanSplit() {
+        if(getHandSize() > 1) {
+            String firstCardName = getCardByPosition(0).getName();
+            String secondCardName = getCardByPosition(1).getName();
+            return getCanDoubleDown() && firstCardName.equals(secondCardName);
+        } else {
+            return false;
+        }
+
     }
 
     public Card getCardByPosition(int position) {

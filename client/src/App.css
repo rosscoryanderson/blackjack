@@ -32,10 +32,126 @@
   }
 }
 
+.App2 {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 1fr 8fr 1fr;
+  background-color: #FBFEF9;
+  height: 100vh
+}
+
+.App {
+  display: grid;
+  grid-template-columns:  repeat(8, [col] 1fr );
+  grid-template-rows: repeat(11, [row] 1fr );
+  grid-gap: 10px;
+  background-color: #FBFEF9;
+  height: 100vh
+}
+
+.container2 {
+  background-color: #00798c;
+  border: 2px solid #edae49;
+  border-radius: 1vw
+}
+
+.table {
+  background-color: #048ba8;
+  border: 2px solid #5B616A;
+  border-top-left-radius: 1vw;
+  border-top-right-radius: 1vw;
+  border-bottom-left-radius: 35vw;
+  border-bottom-right-radius: 35vw;
+  grid-column: 2 / 7;
+  grid-row: row 2 / 8; 
+}
+
+.container2 {
+  background-color: #e0e0e2;
+  border: 0px solid #fa9f42;
+  border-radius: 0vw;
+  grid-column: 2 / 8;
+  grid-row: 10; 
+}
+
 .cardImage {
   height: 20vh;
 }
 
 .imageContainer {
   display: inline-flex;
+}
+
+.action-button-container {
+  background-color: #e0e0e2;
+  border: 1px solid #fa9f42;
+  border-radius: 0vw;
+  grid-column: 7;
+  grid-row: 2 / 5; 
+}
+
+.btn {
+  width: 95%;
+  padding: 10px;
+  margin: .5vh;
+  font-size: 1.5vh;
+  border-radius: 7px;
+  box-shadow: 2px 5px 7px 0 #837e7a
+}
+
+.btn-hit {
+  background-color: #30638e;
+  border: 1px solid #30638e;
+  color: #e0e0e2
+}
+
+.btn-hit:hover {
+  background-color: #4f86b3fa;
+  border: 1px solid #4f86b3fa;
+}
+
+.btn-stand {
+  background-color: #d1495b;
+  border: 1px solid #d1495b;
+  color: #e0e0e2
+}
+
+.btn-stand:hover {
+  background-color: #ce7c87;
+  border: 1px solid #ce7c87;
+  color: #e0e0e2
+}
+
+.btn-split {
+  background-color: #edae49;
+  border: 1px solid #edae49;
+  color: #262626
+}
+
+.btn-split:hover {
+  background-color: #e0bc81;
+  border: 1px solid #e0bc81;
+  color: #262626
+}
+
+.btn-double-down {
+  background-color: #00798c;
+  border: 1px solid #00798c;
+  color: #e0e0e2
+}
+
+.btn-double-down:hover {
+  background-color: #6eb2bd;
+  border: 1px solid #6eb2bd;
+  color: #e0e0e2
+}
+
+.btn:disabled {
+  background-color: #b6babb;
+  border: 1px solid #b6babb;
+  color: #e0e0e2
+}
+
+h1 {
+  color: #BED8D4
 }

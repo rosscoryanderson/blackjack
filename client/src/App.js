@@ -2,28 +2,19 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Hand from './components/Hand';
+import ActionButtonContainer from './components/ActionButtonContainer';
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
+        <div className="table">
+          <h1>Hello World</h1>
           <Hand />
-          
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        </div>
+        <div className="container2"></div>
+        <ActionButtonContainer />
       </div>
     );
   }
