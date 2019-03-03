@@ -34,7 +34,7 @@ public class Game {
         return playerHands.get(index);
     }
 
-    public ArrayList<Hand> getAllPlayerHands() {
+    public ArrayList<Hand> getPlayerHands() {
         return playerHands;
     }
 
@@ -129,7 +129,7 @@ public class Game {
     public void dealCardToPlayer(Card card, int index) {
         Hand hand = playerHands.get(index);
         hand.addCardToHand(card);
-        playerHands.set(0, hand);
+        playerHands.set(index, hand);
     }
 
 

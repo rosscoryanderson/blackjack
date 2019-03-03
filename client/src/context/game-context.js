@@ -23,7 +23,7 @@ export default React.createContext({
     betAmount: 5,
     currentHandIndex: 0,
     profit: 0,
-    allPlayerHands: [
+    playerHands: [
         {
             hand: [
                 {

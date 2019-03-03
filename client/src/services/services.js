@@ -40,15 +40,18 @@ class Services {
         .then(res => {
             console.log("new game created");
             console.log(res.data);
-            this.sendHitAction(0)
       })
     }
 
-    static sendNewGameRequest(betAmount) {
+    static sendNewMatchRequest(betAmount) {
         axios.post(SERVER, {})
         .then(res => {
             console.log("new match created");
       })
+    }
+
+    static mapResponseToContext(res) {
+        
     }
 }
 

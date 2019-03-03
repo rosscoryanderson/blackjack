@@ -1,12 +1,10 @@
 import React from 'react'
 import Card from './Card'
 
-export default function Hand() {
+export default function Hand(props) {
     return (
         <div className="imageContainer">
-            <Card value="two" suit="spades" />
-            <Card value="ace" suit="SPADES" />
-            <Card value="KiNg" suit="DIAMONDS2" />
+            {props.hands ? props.hands.map((card, i) => <Card key={i} value={card.name} suit={card.suit} />) : ''}
         </div>
     )
 }

@@ -1,71 +1,93 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Hand from './components/Hand';
 import ActionButtonContainer from './components/ActionButtonContainer';
 import GameContext from './context/game-context';
-import Services from './services/services';
+import TestGames from './components/TestGames';
+import axios from 'axios';
+import DealerHand from './components/DealerHand';
+import PlayerHands from './components/PlayerHands';
+
+const SERVER = "http://localhost:8080/api/blackjack/"
 
 class App extends Component {
+  
   state = {
-    dealerHand: {
-      hand: [
-        {
-          suit: "DIAMONDS",
-          value: 10,
-          name: "King"
-        }
-      ],
-      handValue: 10,
-      aceInHand: false,
-      doubleDown: false,
-      handStatus: null,
-      largestHandValue: 10,
-      handSize: 1,
-      canSplit: false,
-      canDoubledown: false
-    },
-    gameInProgress: true,
-    playersTurn: true,
+    dealerHand: null,
+    gameInProgress: false,
+    playersTurn: false,
     betAmount: 5,
     currentHandIndex: 0,
     profit: 0,
-    allPlayerHands: [
-      {
-        hand: [
-          {
-            suit: "HEARTS",
-            value: 10,
-            name: "Ten"
-          },
-          {
-            suit: "SPADES",
-            value: 10,
-            name: "Jack"
-          }
-        ],
-        handValue: 20,
-        aceInHand: false,
-        doubleDown: false,
-        handStatus: null,
-        largestHandValue: 20,
-        handSize: 2,
-        canSplit: false,
-        canDoubledown: false
-      }
-    ]
+    playerHands: [{
+      canSplit: false,
+      canDoubleDown: false
+    }],
   };
 
-  resetMatch = () => { console.log("Reset Match Activated") };
-  createNewGame = betAmount => { console.log("Create New Game Activated") };
-  hitAction = () => { 
-    //console.log("Hit Action Activated") 
-    Services.sendNewGameRequest(5)
-    Services.sendHitAction(this.state.currentHandIndex);
+  createNewMatch = () => {
+    //Services.sendNewMatchRequest();
+    axios.post(SERVER, {})
+        .then(res => {
+            console.log(res.message);
+            console.log(this.state)
+      })
   };
-  standAction = handIndex => { console.log("Stand Action Activated") };
-  splitAction = handIndex => { console.log("Split Action Activated") };
-  doubleDownAction = handIndex => { console.log("Double Down Action Activated") };
+  createNewGame = betAmount => {
+    //Services.sendNewGameRequest(5);
+    axios.post(SERVER +"newGame/" + 5, {})
+        .then(res => {
+            console.log("new game created");
+            this.mapResponseToState(res.data);
+            console.log(this.state)
+      })
+  };
+  hitAction = () => {
+    //Services.sendHitAction(this.state.currentHandIndex);
+    axios.post(SERVER + "hit/" + this.state.currentHandIndex, {})
+      .then(res => {
+        this.mapResponseToState(res.data);
+        console.log('State after hit')
+        console.log(this.state)
+      })
+  };
+  standAction = handIndex => {
+    //Services.sendStandAction(this.state.currentHandIndex);
+    axios.post(SERVER +"stand/"+ this.state.currentHandIndex, {})
+        .then(res => {
+          this.mapResponseToState(res.data);
+          console.log('State after stand')
+          console.log(this.state)
+      })
+  };
+  splitAction = handIndex => {
+    //Services.sendSplitAction(this.state.currentHandIndex);
+    axios.post(SERVER +"split/"+ this.state.currentHandIndex, {})
+        .then(res => {
+          this.mapResponseToState(res.data);
+          console.log('State after split')
+          console.log(this.state)
+      })
+  };
+  doubleDownAction = handIndex => {
+    axios.post(SERVER +"doubleDown/"+ this.state.currentHandIndex, {})
+        .then(res => {
+          this.mapResponseToState(res.data);
+          console.log('State after double down')
+          console.log(this.state)
+      })
+  };
+  mapResponseToState = (res) => {
+    this.setState({
+      dealerHand: res.dealerHand,
+      gameInProgress: res.gameInProgress,
+      playersTurn: res.playersTurn,
+      betAmount: res.betAmount,
+      currentHandIndex: res.currentHandIndex,
+      profit: res.profit,
+      playerHands: res.playerHands,
+    })
+  }
 
   render() {
     return (
@@ -76,8 +98,9 @@ class App extends Component {
         betAmount: this.state.betAmount,
         currentHandIndex: this.state.currentHandIndex,
         profit: this.state.profit,
-        allPlayerHands: this.state.allPlayerHands,
+        playerHands: this.state.playerHands,
         createNewGame: this.createNewGame,
+        createNewMatch: this.createNewMatch,
         hitAction: this.hitAction,
         standAction: this.standAction,
         splitAction: this.splitAction,
@@ -86,10 +109,12 @@ class App extends Component {
         <div className="App">
           <div className="table">
             <h1>Hello World</h1>
-            <Hand />
+            <DealerHand />
+            <PlayerHands />
           </div>
           <div className="container2"></div>
           <ActionButtonContainer />
+          <TestGames />
         </div>
       </GameContext.Provider>
     );

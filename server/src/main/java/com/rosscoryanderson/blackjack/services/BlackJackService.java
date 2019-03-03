@@ -66,7 +66,7 @@ public class BlackJackService {
 
     public Game dealersTurnActions(Match match, Game game) {
         Game gameCopy = game;
-        ArrayList<Hand> hands = gameCopy.getAllPlayerHands();
+        ArrayList<Hand> hands = gameCopy.getPlayerHands();
         Hand dealerHand = gameCopy.getDealerHand();
         dealerCardDraw(match, gameCopy, dealerHand);
         if(dealerHand.getHandValue() <= 21) {
