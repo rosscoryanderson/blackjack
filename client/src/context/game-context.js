@@ -1,6 +1,6 @@
 import React from 'react';
 
-React.createContext({
+export default React.createContext({
     dealerHand: {
         hand: [
             {
@@ -46,5 +46,11 @@ React.createContext({
             canSplit: false,
             canDoubledown: false
         }
-    ]
+    ],
+    resetMatch: () => {},
+  createNewGame: betAmount => { },
+  hitAction: handIndex => { },
+  standAction: handIndex => { },
+  splitAction: handIndex => { },
+  doubleDownAction: handIndex => { },
 })
