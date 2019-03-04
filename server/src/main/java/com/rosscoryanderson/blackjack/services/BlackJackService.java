@@ -31,7 +31,7 @@ public class BlackJackService {
         Hand hand = gameCopy.getPlayerHand(index);
         if (hand.getHandValue() > 21) {
             gameCopy.nextHand(index, HandStatus.BUSTED);
-        } else if (hand.getHandValue() == 21) {
+        } else if (hand.getLargestHandValue() == 21) {
             if (hand.getHandSize() == 2) {
                 gameCopy = payOutBlackJack(match, gameCopy, hand);
                 gameCopy.nextHand(index, HandStatus.BLACKJACK);

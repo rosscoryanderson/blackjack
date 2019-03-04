@@ -132,18 +132,17 @@ class App extends Component {
         increaseBetAmount: this.increaseBetAmount
       }}>
         <div className="App">
-          <div className="table">
-            <DealerHand />
-            <TableMessage />
-            <PlayerHands />
-          </div>
+          <div className="table"></div>
+
+          <DealerHand />
+          <PlayerHands />
+          <TableMessage />
           <ActionCentre />
           <InfoCentre />
-          <TestGames />
         </div>
       </GameContext.Provider>
     );
   }
 }
-
+// <TestGames />
 export default App;
