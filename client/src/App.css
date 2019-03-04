@@ -48,12 +48,14 @@
 }
 
 .btn {
-  width: 15vw;
+  width: 17vw;
+  height: 7vh;
   padding: 10px;
   margin: .5vh;
-  font-size: 1.5vh;
+  font-size: 1.25rem;
   border-radius: 7px;
-  box-shadow: 2px 5px 7px 0 #837e7a
+  box-shadow: 2px 5px 7px 0 #837e7a;
+  vertical-align: center;
 }
 
 .btn-hit {
@@ -92,20 +94,110 @@
 }
 
 .btn-double-down {
-  background-color: #00798c;
-  border: 1px solid #00798c;
+  background-color: #A23B72;
+  border: 1px solid #A23B72;
   color: #e0e0e2
 }
 
 .btn-double-down:hover {
-  background-color: #6eb2bd;
-  border: 1px solid #6eb2bd;
+  background-color: #ce84ab;
+  border: 1px solid #ce84ab;
   color: #e0e0e2
 }
 
 .btn:disabled {
   background-color: #b6babb;
   border: 1px solid #b6babb;
+  color: #e0e0e2
+}
+
+.bet-btn {
+  margin-top: 0.2vw;
+  width: 7vh;
+  height: 7vh;
+  margin: .5vh;
+  font-size: 1.5rem;
+  border-radius: 7px;
+  box-shadow: 2px 5px 7px 0 #837e7a;
+  vertical-align: center;
+}
+
+.lower-bet {
+  background-color: #d1495b;
+  border: 1px solid #d1495b;
+  color: #e0e0e2
+}
+
+.lower-bet:hover {
+  background-color: #ce7c87;
+  border: 1px solid #ce7c87;
+  color: #e0e0e2
+}
+
+.lower-bet:disabled {
+  background-color: #ce7c87;
+  border: 1px solid #ce7c87;
+  color: #e0e0e2
+}
+
+.increase-bet {
+  background-color: #28AFB0;
+  border: 1px solid #28AFB0;
+  color: #e0e0e2
+}
+
+.increase-bet:hover {
+  background-color: #82cecd;
+  border: 1px solid #82cecd;
+  color: #e0e0e2
+}
+
+.increase-bet:disabled {
+  background-color: #82cecd;
+  border: 1px solid #82cecd;
+  color: #e0e0e2
+}
+
+.bet-amount {
+  display: inline-block;
+  position: relative;
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: -100px;
+  font-size: 3rem;
+  color: #048ba8
+}
+
+.make-bet {
+  width: 17vw;
+  height: 7vh;
+  margin: .5vh;
+  font-size: 1.5rem;
+  border-radius: 7px;
+  box-shadow: 2px 5px 7px 0 #837e7a;
+  vertical-align: center;
+  background-color: #048ba8;
+  border: 1px solid #048ba8;
+  color: #e0e0e2
+}
+
+.make-bet:hover {
+  background-color: #7eb7c4;
+  border: 1px solid #7eb7c4;
+  color: #e0e0e2
+}
+
+.new-match {
+  background-color: #EA526F;
+  border: 1px solid #EA526F;
+  color: #e0e0e2
+}
+
+.new-match:hover {
+  background-color: #ca8f99;
+  border: 1px solid #ca8f99;
   color: #e0e0e2
 }
 

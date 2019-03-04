@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from './Card'
+import Card from './Hands/Card'
 
 export default function Hand(props) {
     return (

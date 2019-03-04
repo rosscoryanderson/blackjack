@@ -50,6 +50,10 @@ public class Game {
         return dealerHand;
     }
 
+    public int getChipStack() {
+        return chipStack;
+    }
+
     public int getProfit() {
         return profit;
     }
@@ -69,7 +73,6 @@ public class Game {
     public void setPlayerHand(Hand playerHand, int index) {
         this.playerHands.set(index, playerHand);
     }
-
 
     public void setGameInProgress(boolean gameInProgress) {
         this.gameInProgress = gameInProgress;
