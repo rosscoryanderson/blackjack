@@ -22,6 +22,7 @@ export default React.createContext({
     playersTurn: true,
     betAmount: 5,
     currentHandIndex: 0,
+    chipStack: 100,
     profit: 0,
     playerHands: [
         {

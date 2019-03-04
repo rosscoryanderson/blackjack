@@ -1,7 +1,7 @@
 import React from 'react'
 import GameContext from '../context/game-context';
-import Hand from './Hand';
-import DealerScore from './DealerScore'
+import Hand from './Hands/Hand';
+import DealerScore from './Hands/DealerScore'
 
 export default function DealerHand() {
     return (

@@ -4,13 +4,14 @@ public class Match {
     // A match is a series of games, running until the player goes broke.
     // It manages the running total of chips and the shoe.
 
-    // Default player chips to $100.
-    private int playerChipStack = 100;
+    private int playerChipStack;
     private Shoe shoe;
 
     // TODO: Add match options
     public Match() {
         shoe = new Shoe();
+        // Default player chips to $100.
+        playerChipStack = 100;
     }
 
     public Game newGame(int betAmount) {

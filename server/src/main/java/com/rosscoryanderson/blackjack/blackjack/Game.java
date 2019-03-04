@@ -30,6 +30,18 @@ public class Game {
         this.chipStack = chipStack;
     }
 
+    // Copy constructor
+    public Game(Game gameCopy) {
+        this.playerHands = gameCopy.playerHands;
+        this.dealerHand = gameCopy.dealerHand;
+        this.gameInProgress = gameCopy.gameInProgress;
+        this.playersTurn = gameCopy.playersTurn;
+        this.betAmount = gameCopy.betAmount;
+        this.chipStack = gameCopy.chipStack;
+        this.currentHandIndex = gameCopy.currentHandIndex;
+        this.profit = gameCopy.profit;
+    }
+
     public Hand getPlayerHand(int index) {
         return playerHands.get(index);
     }
@@ -78,6 +90,10 @@ public class Game {
         this.gameInProgress = gameInProgress;
     }
 
+    public void setChipStack(int chipStack) {
+        this.chipStack = chipStack;
+    }
+
     public boolean playerCanSplit(Hand hand) {
         // If hand size is exactly 2, and the two cards have the same value (e.g. are a pair,
         // allow them to be split.
@@ -101,19 +117,15 @@ public class Game {
         Card firstCardDealt = hand.getCardByPosition(0);
         Card secondCardDealt = hand.getCardByPosition(1);
 
-        if (playerCanSplit(hand) && canAffordToSplitOrDouble()) {
-            betAmount = betAmount * 2;
+        Hand firstSplit = new Hand();
+        Hand secondSplit = new Hand();
 
-            Hand firstSplit = new Hand();
-            Hand secondSplit = new Hand();
+        firstSplit.addCardToHand(firstCardDealt);
+        secondSplit.addCardToHand(secondCardDealt);
 
-            firstSplit.addCardToHand(firstCardDealt);
-            secondSplit.addCardToHand(secondCardDealt);
-
-            playerHands.set(index, firstSplit);
-            playerHands.add(index + 1, secondSplit);
-        }
-    }
+        playerHands.set(index, firstSplit);
+        playerHands.add(index + 1, secondSplit);
+}
 
     public void nextHand(int index, HandStatus handStatus) {
         Hand hand = getPlayerHand(index);
@@ -141,8 +153,8 @@ public class Game {
     }
 
     public void addToProfit(int amount) {
-        profit =+ amount;
+        System.out.println("add to profit amount" + amount);
+        profit += amount;
+        System.out.println("after addition profit" + profit);
     }
-
-
 }

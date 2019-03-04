@@ -35,6 +35,16 @@
   grid-row: 10; 
 }
 
+.table-message-display {
+  grid-column: 2 / 8;
+  grid-row: 10; 
+}
+
+.info-centre {
+  grid-column: 2 / 8;
+  grid-row: 11; 
+}
+
 .dealer-hand {
   grid-column: 4;
   grid-row: 2; 

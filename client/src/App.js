@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import Hand from './components/Hand';
 import ActionCentre from './components/ActionCentre';
 import GameContext from './context/game-context';
 import TestGames from './components/TestGames';
 import axios from 'axios';
 import DealerHand from './components/DealerHand';
 import PlayerHands from './components/PlayerHands';
+import InfoCentre from './components/InfoCentre';
+import TableMessage from './components/TableMessage';
 
 const SERVER = "http://localhost:8080/api/blackjack/"
 
@@ -27,7 +28,6 @@ class App extends Component {
   };
 
   createNewMatch = () => {
-    //Services.sendNewMatchRequest();
     axios.post(SERVER, {})
       .then(res => {
         this.setState({
@@ -47,7 +47,6 @@ class App extends Component {
   };
 
   createNewGame = betAmount => {
-    //Services.sendNewGameRequest(5);
     axios.post(SERVER + "newGame/" + betAmount, {})
       .then(res => {
         console.log("new game created");
@@ -57,7 +56,6 @@ class App extends Component {
   };
 
   hitAction = () => {
-    //Services.sendHitAction(this.state.currentHandIndex);
     axios.post(SERVER + "hit/" + this.state.currentHandIndex, {})
       .then(res => {
         this.mapResponseToState(res.data);
@@ -66,8 +64,7 @@ class App extends Component {
       })
   };
 
-  standAction = handIndex => {
-    //Services.sendStandAction(this.state.currentHandIndex);
+  standAction = () => {
     axios.post(SERVER + "stand/" + this.state.currentHandIndex, {})
       .then(res => {
         this.mapResponseToState(res.data);
@@ -76,8 +73,7 @@ class App extends Component {
       })
   };
 
-  splitAction = handIndex => {
-    //Services.sendSplitAction(this.state.currentHandIndex);
+  splitAction = () => {
     axios.post(SERVER + "split/" + this.state.currentHandIndex, {})
       .then(res => {
         this.mapResponseToState(res.data);
@@ -86,7 +82,7 @@ class App extends Component {
       })
   };
 
-  doubleDownAction = handIndex => {
+  doubleDownAction = () => {
     axios.post(SERVER + "doubleDown/" + this.state.currentHandIndex, {})
       .then(res => {
         this.mapResponseToState(res.data);
@@ -96,9 +92,7 @@ class App extends Component {
   };
 
   increaseBetAmount() {
-    console.log('increase bet called')
     if ((this.state.betAmount + 5) < this.state.chipStack) {
-      console.log('if bet called')
       const newValue = this.state.betAmount + 5;
       this.setState({ betAmount: newValue })
       this.betAmount += 5;
@@ -139,12 +133,12 @@ class App extends Component {
       }}>
         <div className="App">
           <div className="table">
-            <h1>Hello World</h1>
             <DealerHand />
+            <TableMessage />
             <PlayerHands />
           </div>
-          <div className="container2"></div>
           <ActionCentre />
+          <InfoCentre />
           <TestGames />
         </div>
       </GameContext.Provider>

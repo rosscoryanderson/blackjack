@@ -38,16 +38,8 @@ export default class AddBet extends Component {
         }
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         this.recalculateBetSize()
-    }
-
-    maxBet() {
-        return (this.state.betAmount + 5) > this.chipStack;
-    }
-
-    betValue() {
-        return this.betAmount;
     }
 
     render() {
@@ -60,7 +52,7 @@ export default class AddBet extends Component {
                 <h3 className="bet-amount">{ this.state.betAmount }</h3>
                 <button
                     className="bet-btn increase-bet"
-                    disabled={this.maxBet()}
+                    disabled={(this.state.betAmount + 5) > this.state.chipStack ? "disabled" : false}
                     onClick={() => this.increaseBetAmount()}>+</button>
                 <button
                     className="btn make-bet"

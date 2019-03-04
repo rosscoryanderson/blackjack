@@ -46,12 +46,18 @@ public class BlackJackController {
     @PostMapping("/hit/{index}")
     public ResponseEntity<Game> hitAction(@PathVariable int index) {
         game = blackJackService.hitAction(match, game, index);
+//        game.setChipStack(match.getPlayerChipStack());
+//        System.out.println("At hit time " + game.getChipStack());
+//        System.out.println("At hit time " + match.getPlayerChipStack());
         return new ResponseEntity<Game>(game, HttpStatus.OK);
     }
 
     @PostMapping("/stand/{index}")
     public ResponseEntity<Game> standAction(@PathVariable int index) {
         game = blackJackService.standAction(match, game, index);
+//        game.setChipStack(match.getPlayerChipStack());
+//        System.out.println("At stand " + game.getChipStack());
+//        System.out.println("At stand time " + match.getPlayerChipStack());
         return new ResponseEntity<Game>(game, HttpStatus.OK);
     }
 
@@ -63,7 +69,7 @@ public class BlackJackController {
 
     @PostMapping("/split/{index}")
     public ResponseEntity<?> splitAction(@PathVariable int index) {
-        game = blackJackService.splitAction(game, index);
+        game = blackJackService.splitAction(match, game, index);
         return new ResponseEntity<Game>(game, HttpStatus.OK);
     }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GameContext from '../context/game-context'
+import GameContext from '../../context/game-context'
 
 export default class PlayerScore extends Component {
     static contextType = GameContext;
