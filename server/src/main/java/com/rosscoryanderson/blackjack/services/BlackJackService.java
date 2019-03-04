@@ -91,7 +91,6 @@ public class BlackJackService {
                     gameCopy = payOutWin(match, gameCopy, hand);
                 }
             } else if (hand.getHandStatus() == HandStatus.BUSTED) {
-                System.out.println("BUSTED CUSTARD");
                 gameCopy = payOutLoss(match, gameCopy, hand);
             }
         }
@@ -133,7 +132,6 @@ public class BlackJackService {
     }
 
     private Game payOut(Match match, Game game, Hand hand, int payOutAmount) {
-        System.out.println("Pay out amount: " + payOutAmount);
         Game gameCopy = new Game(game);
         int currentChipStack = match.getPlayerChipStack();
         int payOutTotal;
@@ -141,7 +139,6 @@ public class BlackJackService {
         int betAmount = gameCopy.getBetAmount();
         if (hand.isDoubleDown()) {
             payOutTotal = payOutAmount * 2;
-            System.out.println("hand is double down" + (payOutTotal < 0));
             if (payOutAmount < 0) {
                 profitTotal = payOutTotal;
             } else {
@@ -155,7 +152,6 @@ public class BlackJackService {
                 profitTotal = payOutTotal - betAmount;
             }
         }
-        System.out.println("profit amount " + profitTotal);
         gameCopy.addToProfit(profitTotal);
         if (payOutAmount < 0) {
             if (hand.isDoubleDown()) {

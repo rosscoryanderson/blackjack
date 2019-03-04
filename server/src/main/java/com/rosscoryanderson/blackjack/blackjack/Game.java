@@ -153,8 +153,6 @@ public class Game {
     }
 
     public void addToProfit(int amount) {
-        System.out.println("add to profit amount" + amount);
         profit += amount;
-        System.out.println("after addition profit" + profit);
     }
 }
