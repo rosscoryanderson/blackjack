@@ -121,7 +121,11 @@ public class BlackJackService {
         int dealerTotal = dealer.getLargestHandValue();
 
         if (playerTotal > dealerTotal) {
-            gameCopy = payOutWin(match, gameCopy, player);
+            if(playerTotal == 21 && player.getHandSize() == 2) {
+                gameCopy = payOutBlackJack(match, gameCopy, player);
+            } else {
+                gameCopy = payOutWin(match, gameCopy, player);
+            }
         } else if (playerTotal == dealerTotal) {
             gameCopy = payOutPush(match, gameCopy, player);
         } else {
@@ -142,6 +146,7 @@ public class BlackJackService {
             if (payOutAmount < 0) {
                 profitTotal = payOutTotal;
             } else {
+                System.out.println("bet amount" + (payOutTotal - (betAmount * 2)));
                 profitTotal = payOutTotal - (betAmount * 2);
             }
         } else {

@@ -8,11 +8,11 @@ export default function PlayerHands() {
         <GameContext.Consumer>
             {context => (
                 <div className="player-hands">
-                    {context.playerHands ? context.playerHands.map((hand, i) => 
+                    {context.playerHands ? context.playerHands.map((hand, i) =>
                         <div key={i}>
-                            <Hand hands={hand.hand} />
-                            <PlayerScore position={i} />
-                        </div>
+                                <Hand hands={hand.hand}/>
+                                <PlayerScore position={i} />
+                            </div>
                     ) : ''}
                 </div>
             )}

@@ -5,7 +5,7 @@ export default function ProfitLoss() {
   return (
     <GameContext.Consumer>
         {context => (
-            <h1>Bet Amount: {context.betAmount} / Chip Stack: {context.chipStack}</h1>
+            <h1 className="info-center-text">Bet Amount: {context.betAmount} / Chip Stack: {context.chipStack}</h1>
         )}
     </GameContext.Consumer>
   )
