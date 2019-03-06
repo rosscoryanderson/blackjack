@@ -4,20 +4,13 @@ import java.util.ArrayList;
 
 public class Game {
     // A game manages a single hand of BlackJack, while a match continues until the player is broke.
-
     private ArrayList<Hand> playerHands;
     private Hand dealerHand;
     private boolean gameInProgress;
     private boolean playersTurn;
-    private int betAmount;
-    private int chipStack;
     private int currentHandIndex;
-    private int profit;
 
-
-    // TODO create additional constructor for games with options,
-    //  such as multiple players, different starting stacks etc.
-    public Game(int betAmount, int chipStack) {
+    public Game() {
         Hand playerHand = new Hand();
         dealerHand = new Hand();
         playerHands = new ArrayList<Hand>();
@@ -25,33 +18,14 @@ public class Game {
         gameInProgress = true;
         playersTurn = true;
         currentHandIndex = 0;
-        profit = 0;
-        this.betAmount = betAmount;
-        this.chipStack = chipStack;
     }
 
-    // Copy constructor
-    public Game(Game gameCopy) {
-        this.playerHands = gameCopy.playerHands;
-        this.dealerHand = gameCopy.dealerHand;
-        this.gameInProgress = gameCopy.gameInProgress;
-        this.playersTurn = gameCopy.playersTurn;
-        this.betAmount = gameCopy.betAmount;
-        this.chipStack = gameCopy.chipStack;
-        this.currentHandIndex = gameCopy.currentHandIndex;
-        this.profit = gameCopy.profit;
-    }
-
-    public Hand getPlayerHand(int index) {
-        return playerHands.get(index);
+    public Hand getPlayerHand() {
+        return playerHands.get(currentHandIndex);
     }
 
     public ArrayList<Hand> getPlayerHands() {
         return playerHands;
-    }
-
-    public int getBetAmount() {
-        return betAmount;
     }
 
     public boolean isPlayersTurn() {
@@ -62,14 +36,6 @@ public class Game {
         return dealerHand;
     }
 
-    public int getChipStack() {
-        return chipStack;
-    }
-
-    public int getProfit() {
-        return profit;
-    }
-
     public boolean isGameInProgress() {
         return gameInProgress;
     }
@@ -78,42 +44,20 @@ public class Game {
         return currentHandIndex;
     }
 
-    public boolean isLastPlayerHand(int index) {
-        return (index + 1) == playerHands.size();
+    public boolean isLastPlayerHand() {
+        return (currentHandIndex + 1) == playerHands.size();
     }
 
-    public void setPlayerHand(Hand playerHand, int index) {
-        this.playerHands.set(index, playerHand);
+    public void setPlayerHand(Hand playerHand) {
+        this.playerHands.set(currentHandIndex, playerHand);
     }
 
     public void setGameInProgress(boolean gameInProgress) {
         this.gameInProgress = gameInProgress;
     }
 
-    public void setChipStack(int chipStack) {
-        this.chipStack = chipStack;
-    }
-
-    public boolean playerCanSplit(Hand hand) {
-        // If hand size is exactly 2, and the two cards have the same value (e.g. are a pair,
-        // allow them to be split.
-        Card firstCardDealt = hand.getCardByPosition(0);
-        Card secondCardDealt = hand.getCardByPosition(1);
-
-        if (hand.getHandSize() == 2) {
-            if (firstCardDealt.getName().equals(secondCardDealt.getName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean canAffordToSplitOrDouble() {
-        return (chipStack - betAmount) > 0;
-    }
-
-    public void splitCards(int index) {
-        Hand hand = playerHands.get(index);
+    public void splitCards() {
+        Hand hand = playerHands.get(currentHandIndex);
         Card firstCardDealt = hand.getCardByPosition(0);
         Card secondCardDealt = hand.getCardByPosition(1);
 
@@ -123,28 +67,27 @@ public class Game {
         firstSplit.addCardToHand(firstCardDealt);
         secondSplit.addCardToHand(secondCardDealt);
 
-        playerHands.set(index, firstSplit);
-        playerHands.add(index + 1, secondSplit);
+        playerHands.set(currentHandIndex, firstSplit);
+        playerHands.add(currentHandIndex + 1, secondSplit);
 }
 
-    public void nextHand(int index, HandStatus handStatus) {
-        Hand hand = getPlayerHand(index);
+    public void nextHand(HandStatus handStatus) {
+        Hand hand = getPlayerHand();
         if (hand.getHandStatus() == null) {
             hand.setHandStatus(handStatus);
-        }
-        setPlayerHand(hand, index);
-
-        if (!isLastPlayerHand(index)) {
-            currentHandIndex =+ 1;
-        } else {
-            playersTurn = false;
+            setPlayerHand(hand);
+            if (!isLastPlayerHand()) {
+                currentHandIndex =+ 1;
+            } else {
+                playersTurn = false;
+            }
         }
     }
 
-    public void dealCardToPlayer(Card card, int index) {
-        Hand hand = playerHands.get(index);
+    public void dealCardToPlayer(Card card) {
+        Hand hand = playerHands.get(currentHandIndex);
         hand.addCardToHand(card);
-        playerHands.set(index, hand);
+        playerHands.set(currentHandIndex, hand);
     }
 
 
@@ -152,7 +95,5 @@ public class Game {
         dealerHand.addCardToHand(card);
     }
 
-    public void addToProfit(int amount) {
-        profit += amount;
-    }
+
 }

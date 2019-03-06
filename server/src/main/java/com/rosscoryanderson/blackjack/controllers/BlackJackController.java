@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/blackjack")
 @CrossOrigin
 public class BlackJackController {
-    private Match match;
+    private GameEngine gameEngine;
     private Game game;
 
     @Autowired
@@ -19,19 +19,19 @@ public class BlackJackController {
 
     @PostMapping("/")
     public ResponseEntity<?> createNewMatch() {
-        match = blackJackService.createMatch();
-        String message = "Match Created";
+        gameEngine = blackJackService.createMatch();
+        String message = "GameEngine Created";
         return new ResponseEntity<String>(message, HttpStatus.CREATED);
     }
 
     @PostMapping("/newGame/{betAmount}")
     public ResponseEntity<?> createNewGame(@PathVariable int betAmount) {
         Integer bet = Integer.valueOf(betAmount);
-        if(match == null){
-            match = blackJackService.createMatch();
+        if(gameEngine == null){
+            gameEngine = blackJackService.createMatch();
         }
 
-        if(bet > match.getPlayerChipStack()) {
+        if(bet > gameEngine.getPlayerChipStack()) {
             String errorMessage = "Bet amount too large";
             return new ResponseEntity<String>(errorMessage, HttpStatus.BAD_REQUEST);
         } else if (bet < 0) {
@@ -39,32 +39,32 @@ public class BlackJackController {
             return new ResponseEntity<String>(errorMessage, HttpStatus.BAD_REQUEST);
         }
 
-        game = blackJackService.createGame(match, bet);
-        return new ResponseEntity<Game>(game, HttpStatus.OK);
+        gameEngine = blackJackService.createGame(gameEngine, bet);
+        return new ResponseEntity<GameEngine>(gameEngine, HttpStatus.OK);
     }
 
-    @PostMapping("/hit/{index}")
-    public ResponseEntity<Game> hitAction(@PathVariable int index) {
-        game = blackJackService.hitAction(match, game, index);
-        return new ResponseEntity<Game>(game, HttpStatus.OK);
+    @PostMapping("/hit")
+    public ResponseEntity<GameEngine> hitAction() {
+        gameEngine = blackJackService.hitAction(gameEngine);
+        return new ResponseEntity<GameEngine>(gameEngine, HttpStatus.OK);
     }
 
-    @PostMapping("/stand/{index}")
-    public ResponseEntity<Game> standAction(@PathVariable int index) {
-        game = blackJackService.standAction(match, game, index);
-        return new ResponseEntity<Game>(game, HttpStatus.OK);
+    @PostMapping("/stand")
+    public ResponseEntity<GameEngine> standAction() {
+        gameEngine = blackJackService.standAction(gameEngine);
+        return new ResponseEntity<GameEngine>(gameEngine, HttpStatus.OK);
     }
 
-    @PostMapping("/doubleDown/{index}")
-    public ResponseEntity<?> doubleDownAction(@PathVariable int index) {
-        game = blackJackService.doubleDownAction(match, game, index);
-        return new ResponseEntity<Game>(game, HttpStatus.OK);
+    @PostMapping("/doubleDown")
+    public ResponseEntity<GameEngine> doubleDownAction() {
+        gameEngine = blackJackService.doubleDownAction(gameEngine);
+        return new ResponseEntity<GameEngine>(gameEngine, HttpStatus.OK);
     }
 
-    @PostMapping("/split/{index}")
-    public ResponseEntity<?> splitAction(@PathVariable int index) {
-        game = blackJackService.splitAction(match, game, index);
-        return new ResponseEntity<Game>(game, HttpStatus.OK);
+    @PostMapping("/split")
+    public ResponseEntity<GameEngine> splitAction() {
+        gameEngine = blackJackService.splitAction(gameEngine);
+        return new ResponseEntity<GameEngine>(gameEngine, HttpStatus.OK);
     }
 
 }

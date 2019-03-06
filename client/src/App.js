@@ -50,13 +50,14 @@ class App extends Component {
     axios.post(SERVER + "newGame/" + betAmount, {})
       .then(res => {
         console.log("new game created");
+        console.log(res.data)
         this.mapResponseToState(res.data);
         console.log(this.state)
       })
   };
 
   hitAction = () => {
-    axios.post(SERVER + "hit/" + this.state.currentHandIndex, {})
+    axios.post(SERVER + "hit", {})
       .then(res => {
         this.mapResponseToState(res.data);
         console.log('State after hit')
@@ -65,7 +66,7 @@ class App extends Component {
   };
 
   standAction = () => {
-    axios.post(SERVER + "stand/" + this.state.currentHandIndex, {})
+    axios.post(SERVER + "stand", {})
       .then(res => {
         this.mapResponseToState(res.data);
         console.log('State after stand')
@@ -74,7 +75,7 @@ class App extends Component {
   };
 
   splitAction = () => {
-    axios.post(SERVER + "split/" + this.state.currentHandIndex, {})
+    axios.post(SERVER + "split", {})
       .then(res => {
         this.mapResponseToState(res.data);
         console.log('State after split')
@@ -83,7 +84,7 @@ class App extends Component {
   };
 
   doubleDownAction = () => {
-    axios.post(SERVER + "doubleDown/" + this.state.currentHandIndex, {})
+    axios.post(SERVER + "doubleDown", {})
       .then(res => {
         this.mapResponseToState(res.data);
         console.log('State after double down')
@@ -101,14 +102,14 @@ class App extends Component {
 
   mapResponseToState = (res) => {
     this.setState({
-      dealerHand: res.dealerHand,
-      gameInProgress: res.gameInProgress,
-      playersTurn: res.playersTurn,
+      dealerHand: res.game.dealerHand,
+      gameInProgress: res.game.gameInProgress,
+      playersTurn: res.game.playersTurn,
       betAmount: res.betAmount,
-      chipStack: res.chipStack,
-      currentHandIndex: res.currentHandIndex,
+      chipStack: res.playerChipStack,
+      currentHandIndex: res.game.currentHandIndex,
       profit: res.profit,
-      playerHands: res.playerHands,
+      playerHands: res.game.playerHands,
     })
   }
 
