@@ -1,7 +1,7 @@
 # Simple blackjack game
 An app built to get hands on experience with Java and React. 
 
-Try it out at http://rosscoryanderson.com
+Try it out at http://rosscoryanderson.com/blackjack
 This is hosted on an EC2 instance AWS. 
 
 ## Learning outcomes
